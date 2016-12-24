@@ -1,3 +1,6 @@
+## Final document files:
+*.pdf
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
