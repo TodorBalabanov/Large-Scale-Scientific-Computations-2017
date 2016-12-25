@@ -30,8 +30,17 @@ This study addresses application of population based optimization heuristics to 
 %
 \section{Introduction}
 %
+Optimal packing problem is an optimization problem in mathematics that involves attempting to pack objects together into container (or many containers). One of the usual goals is to pack a single container as densely as possible. This problem is related to real life packaging (in fact optimal cutting) problem as described in [1,2]. This study is related with the problem presented at ESGI120 [2] and ESGI113 [4]. The goal is to cut optimally on pieces a sheet of steel and because of that shapes overlapping is not allowed. The cutting result shapes are irregular not self-intersecting polygons. The problem presented at ESGI113 was less complicated than the problem presented at ESGI120, because it was rectangles packing in rectangle sheet of sepcified material. Similar problem is well presented in [5]. With irregular shapes and when the orientation of the given shape is not a constraint, the general nesting approaches are not particularly successful [9]. 
+
+This section stars with problem description and refers to related works in a brief review. Section 2 points out the geometric considerations necessary to understand
+this work. Section 3 describes the underlying rules and criteria used to build the GA based heuristic approach, which is proposed in the same section. In Section 4 some evaluation of the quality of the proposed approach is defined and some results obtained are presented. Finally, the last section draws conclusions and some comments about future work are made.
 %
-\section{Genetic Algorithm for Cutting Order Optimization}
+\section{Geometric considerations}
+%
+All shapes are represented as polygons. Arcs are approximated with small lines. Holes inside the shapes are not considered by definition [2]. Each polygon
+is represented as set of vertices [3]. It is not allowed polygons to overlap. All polygons must be entirely placed inside the stock sheet.
+%
+\section{Genetic Algorithm for Optimal Packing Order}
 %
 %
 \section{Experiments and Results}
@@ -54,6 +63,11 @@ Evtimov, G., Fidanova, S.:
 Ant Colony optimization algorithm for 1D Cutting Stock Problem.
 Proceedings of 11th Annual Meeting of the Bulgarian Section of SIAM, FASTUMPRINT, Sofia, Bulgaria, 24--25 (2016)
 %
+\bibitem {evti}
+Evtimov, G.:
+Project 2: Optimal cutting problem.
+STOBET Ltd., 120th European Study Group with Industry, Sofia, Bulgaria  (2016)
+%
 \bibitem {bal:evti}
 Balabanov, T., Evtimov, G., Koleva, D.:
 ESGI 120 - Problem 2 - Genetic Algorithm Solver.
@@ -63,6 +77,11 @@ https://github.com/VelbazhdSoftwareLLC/ESGI120Problem2GeneticAlgorithmSolver Sof
 Avdzhieva, A., Balabanov, T., Evtimov, G., Kirova, D., Kostadinov, H., Tsachev, Ts., Zhelezova, S., Zlateva N.:
 Optimal Cutting Problem.
 Problems \& final reporst of 113-th European Study Group with Industry, FASTUMPRINT, Sofia, Bulgaria, 49--61 (2015)
+%
+\bibitem {mart:mon}
+Martelloa, S., Monacib, M.:
+Models and algorithms for packing rectangles into the smallest square.
+Computers \& Operations Research, vol. 63, 161--171 (2015)
 %
 \bibitem {bal:1}
 Balabanov, T.:
@@ -78,6 +97,11 @@ Proceedings of XXIII International Symposium Management of energy, industrial an
 Balabanov, T.:
 Heuristic Forecasting Approaches in Distributed Environment (in Bulgarian).
 Proceedings of Anniversary Scientific Conference 40 Years Department of Industrial Automation, UCTM, Sofia, Bulgaria, 163--166 (2011)
+%
+\bibitem {}
+Teresa Costa, M.,  Miguel Gomes, A., Oliveira, J.:
+Heuristic approaches to large-scale periodic packing of irregular shapes on a rectangular sheet.
+European Journal of Operational Research, vol. 192, 29--40 (2009)
 %
 \end{thebibliography}
 \end{document}
