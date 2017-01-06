@@ -32,13 +32,32 @@ This study addresses application of population based optimization heuristics to 
 %
 Optimal packing problem is an optimization problem in mathematics that involves attempting to pack objects together into container (or many containers). One of the usual goals is to pack a single container as densely as possible. This problem is related to real life packaging (in fact optimal cutting) problem as described in [1,2]. This study is related with the problem presented at ESGI120 [2] and ESGI113 [4]. The goal is to cut optimally on pieces a sheet of steel and because of that shapes overlapping is not allowed. The cutting result shapes are irregular not self-intersecting polygons. The problem presented at ESGI113 was less complicated than the problem presented at ESGI120, because it was rectangles packing in rectangle sheet of sepcified material. Similar problem is well presented in [5]. With irregular shapes and when the orientation of the given shape is not a constraint, the general nesting approaches are not particularly successful [9]. 
 
-This section stars with problem description and refers to related works in a brief review. Section 2 points out the geometric considerations necessary to understand
-this work. Section 3 describes the underlying rules and criteria used to build the GA based heuristic approach, which is proposed in the same section. In Section 4 some evaluation of the quality of the proposed approach is defined and some results obtained are presented. Finally, the last section draws conclusions and some comments about future work are made.
+This section stars with problem description and refers to related works in a brief review. Section 2 points out the geometric considerations necessary to understand this work. Section 3 describes the underlying rules and criteria used to build the GA based heuristic approach, which is proposed in the same section. In Section 4 some evaluation of the quality of the proposed approach is defined and some results obtained are presented. Finally, the last section draws conclusions and some comments about future work are made.
+%
+\subsection{Problem description}
+%
+The placement of shapse can be found in literature under the keywords of "optimal packing". When packing on a limited stock sheet, the
+goal is to maximise the percentage of stock sheet utilisation, which is equivalent to maximise the number of shapes placed inside the plate. The problem proposed to be solved does not considerer orientation constraints, so, any rotation of the given shape can be allowed. When stock sheet borders need to be taken into account, the orientation of the shapes may be extremely important as it will be shown in the experimental part of this study.
+
+In this work, we propose to solve the problem of Packing of Irregular Shapes (PIS) on a limited stock sheet (a rectangle) by heuristic methods.
+%
+\subsection{Related work}
+%
+There are references in the literature to the Packing Problem since 10th century. Persia, Abul Wefa produced a square dissection problem which often reappears today. Henry Ernest Dudeney's dissection puzzles were famous in the early part of this century, and in three dimensions Piet Hein's Soma Cube (Van Delft and Botermans, 1978) in which pieces have not only to be packed into a cube, but must also be sufficiently stable to balance on a central point, is perhaps the most interesting packing problem to date [10]. However it is only recently that industrial packing problems have been approached from a scientific viewpoint. It should be noted that the rectangular packing problem is known to be NP-complete and therefore it is often not possible to provide exact solutions within a reasonable time limit. Practical problems are not restricted to those involving rectangles, but because of the increased complexity of non-rectangular problems a large proportion of the published work to date has been limited to the packing of rectangles or cuboids [10]. 
 %
 \section{Geometric considerations}
 %
-All shapes are represented as polygons. Arcs are approximated with small lines. Holes inside the shapes are not considered by definition [2]. Each polygon
-is represented as set of vertices [3]. It is not allowed polygons to overlap. All polygons must be entirely placed inside the stock sheet.
+All shapes are represented as polygons. Arcs are approximated with small lines. Holes inside the shapes are not considered by definition [2]. Each polygon is represented as set of vertices [3]. It is not allowed polygons to overlap. All polygons must be entirely placed inside the stock sheet. To guarantee that two polygons do not overlap and are positioned as close as possible, the concept of no-fit-polygon (NFP) is used. The first polygon is firstly positioned on the plane and is considered as the fixed piece. The second polygon is tracing sheet edge of the fixed polygon. To ensure that any shape is entirely placed inside thestock sheet, the concept of inner-fit-polygon (IFP) is used. The IFP is the geometric place of all the points where the reference point of the piece to place can be positioned, so that the piece can be completely placed inside the stock sheet [9]. The computation of NFPs is a very time consuming operation for nonconvex polygons. As a new NFP needs to be recomputed whenever a new relative orientation between two polygons is considered, the complexity of this operation must be taken into account when developing heuristics.
+
+The objective of the PIS problem is to place the largest number of irregular shapes inside a limited rectangular stock sheet, where all the shapes have the different orientation. In its most general formulation, there are no constraints on the selection of the shapes orientation used to build the layout and different orientations should be tested in order to find the one that takes more advantage of the stock sheet’s borders.
+
+To build a layout for the PIS problem, it is necessary to define some parameters:
+
+* the orientation of each shape, i.e. the rotation angle relative to the original orientation;
+
+* the placement point of the each shape positioned;
+
+* the order in which shapes are placed on the sheet;
 %
 \section{Genetic Algorithm for Optimal Packing Order}
 %
@@ -98,10 +117,15 @@ Balabanov, T.:
 Heuristic Forecasting Approaches in Distributed Environment (in Bulgarian).
 Proceedings of Anniversary Scientific Conference 40 Years Department of Industrial Automation, UCTM, Sofia, Bulgaria, 163--166 (2011)
 %
-\bibitem {}
+\bibitem {tere:mig}
 Teresa Costa, M.,  Miguel Gomes, A., Oliveira, J.:
 Heuristic approaches to large-scale periodic packing of irregular shapes on a rectangular sheet.
 European Journal of Operational Research, vol. 192, 29--40 (2009)
+%
+\bibitem {dows:dows}
+Dowsland, K., Dowsland, W.:
+Packing problems.
+European Journal of Operational Research, vol. 56, 2--14 (1992)
 %
 \end{thebibliography}
 \end{document}
