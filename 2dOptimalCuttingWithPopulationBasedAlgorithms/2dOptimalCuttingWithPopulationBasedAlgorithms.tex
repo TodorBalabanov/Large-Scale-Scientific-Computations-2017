@@ -65,10 +65,13 @@ One of the problems arising in all types of nesting problems is the intrinsic di
 %
 \section{Genetic Algorithm for Optimal Packing Order}
 %
+Reading of the input data is done from a text file with listed coordinates of the polygons. During GA's population initialization different individuals are initialized with all plates landscape, portrait or in random angle of rotation. By this way better population diversity is provided. Eight different plates orderings are applied over GA's individuals: unchained input order, randomly shuffled, sorted by plates width, sorted by plates height and bounding rectangle [3]. Initial population is than evaluated but only by the length of bounding rectangle packing. 
+
+As GA selection rule parent individuals are randomly chosen. For plates ordering in the GA's individuals permutation crossover is applied. The resulting child is kept on the place of the worst individual in the population (indirect elitism rule). On newly created individual mutation is applied in the form of rotation in a small random angle and change in the order of two randomly selected plates. In order newly created individual to be evaluated procedure for plates' packing is applied. The individual fitness value is the length of the steel sheet used after packing was applied. 
 %
 \section{Experiments and Results}
 %
-All experiments were done with open source software [3] created by the authors with the support of Velbazhd Software LLC. The software solution is using Java AWT and JST library polygon functionality. Custom implementation of GA was proposed and capabilities Apache GA Framework usage was provided. Three independent experiments were executed (Fig. 1, Fig. 2 and Fig.3).
+All experiments were done with open source software [3] created by the authors with the support of Velbazhd Software LLC. The software solution is using Java AWT and JST library polygon functionality. Custom implementation of GA was proposed and capabilities for Apache GA Framework usage was provided. Three independent experiments were executed (Fig. 1, Fig. 2 and Fig.3). The input data are taken from ESGI 120 case sudy [2], as real industrial task presented by STOBET Ltd.
 %
 \begin{figure}
 	\centering
@@ -92,7 +95,7 @@ All experiments were done with open source software [3] created by the authors w
 \end{figure}
 \FloatBarrier
 
-The convergence of the experiments is similar as it is shown on Fig. 4.
+The convergence of the experiments is similar as it is shown on Fig. 4. Convergence is stairs like because GA is working on a discrete basis and elitism rule was applied.
 
 \begin{figure}
 	\centering
@@ -101,7 +104,9 @@ The convergence of the experiments is similar as it is shown on Fig. 4.
 	\label{fig:Graph}
 \end{figure}
 \FloatBarrier
-
+%
+It is obvious that the two biggest triangles are problematic in the optimal packing and GA is not very capable to deal with this local optima problem.
+%
 \section{Conclusions}
 %
 Usage of GAs for PIS is a promising approach, but solutions are suboptimal and relatively far away from the global optimum. In real industrial application GA may be combined with interactive human assistance in order to achive faster and better solutions. 
