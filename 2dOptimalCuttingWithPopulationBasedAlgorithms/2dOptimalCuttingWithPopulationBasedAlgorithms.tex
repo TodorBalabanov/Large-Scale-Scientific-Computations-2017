@@ -1,4 +1,6 @@
 \documentclass{llncs}
+\usepackage{graphicx}
+\usepackage{placeins}
 %
 \begin{document}
 \pagestyle{headings} 
@@ -66,9 +68,43 @@ One of the problems arising in all types of nesting problems is the intrinsic di
 %
 \section{Experiments and Results}
 %
+All experiments were done with open source software [3] created by the authors with the support of Velbazhd Software LLC. The software solution is using Java AWT and JST library polygon functionality. Custom implementation of GA was proposed and capabilities Apache GA Framework usage was provided. Three independent experiments were executed (Fig. 1, Fig. 2 and Fig.3).
 %
+\begin{figure}
+	\centering
+	\includegraphics[width=12.62cm,height=7.88cm]{fig01.png}
+	\caption{Experiment 1 - final packing solution.}
+	\label{fig:Graph}
+\end{figure}
+%
+\begin{figure}
+	\centering
+	\includegraphics[width=12.62cm,height=7.88cm]{fig02.png}
+	\caption{Experiment 2 - final packing solution.}
+	\label{fig:Graph}
+\end{figure}
+%
+\begin{figure}
+	\centering
+	\includegraphics[width=12.62cm,height=7.88cm]{fig03.png}
+	\caption{Experiment 3 - final packing solution.}
+	\label{fig:Graph}
+\end{figure}
+\FloatBarrier
+
+The convergence of the experiments is similar as it is shown on Fig. 4.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=12.62cm,height=7.88cm]{fig05.png}
+	\caption{Optimization convergence comparison. On the Y-axis the length of the used steel sheet is presented. On the X-axis optimization time is presented (in minutes) on an average performing laptop.}
+	\label{fig:Graph}
+\end{figure}
+\FloatBarrier
+
 \section{Conclusions}
 %
+Usage of GAs for PIS is a promising approach, but solutions are suboptimal and relatively far away from the global optimum. In real industrial application GA may be combined with interactive human assistance in order to achive faster and better solutions. 
 %
 \section*{Acknowledgements}
 %
