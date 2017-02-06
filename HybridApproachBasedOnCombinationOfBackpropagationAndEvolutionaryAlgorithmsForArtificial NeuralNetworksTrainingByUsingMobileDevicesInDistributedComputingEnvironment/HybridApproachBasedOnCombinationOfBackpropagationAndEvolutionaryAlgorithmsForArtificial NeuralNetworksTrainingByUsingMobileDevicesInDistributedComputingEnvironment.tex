@@ -36,14 +36,48 @@ ANNs are very common in the field of machine learning. In its nature ANN trainin
 
 This paper is organized as follows. Section 1 gives an overview of the problem  with a special emphasis on ANNs/GAs and their strengths/weaknesses when applied for the problem's solution. Section 2 introduces a distributed computing environment based on mobile devices. Experiments and results are presented in Section 3. The final Section 4 concludes and some further work suggestions are provided. 
 %
-\subsection{Time Series Forecasting Problem}
+\subsection{Financial Time Series Forecasting}
 %
+A time series is a collection of measurements made in a sequence through the time. There are many examples for time series like the sales of the specific stock in successive months, the average daily temperature at a particular location, the electricity consumption in a particular areal for successive seasons and many other. In the field of the finance, decision makers are in the position of taking very responsible steps during formation of investment strategy. To invest it means to take acceptable risk with expectation of certain amount of profit. The most important aspect of investment is the balance between risk taken and expected profit. On the currency market (FOREX) the main trading is done by exchanging currencies. Currency is the most volatile in price changing object of trading. During the process of trading on such market as FOREX decision makers needs to take three important decisions: 1. Price will go up or down; 2. What volume to buy or sell; 3. How long to keep the opened position. Even it sounds simple in fact it is very difficult to estimate price changing direction, because the huge amount of factors influence it. The order volume is directly related to amount of risk taken. High volume order can lead to high profit if price changing direction is well estimated, but it can lead to high loss in other case. How long to keep the opened position is related to make the profit even bigger or to make the loss as smaller as possible. Financial forecasting is most important for the traders on the currency market, because of the high price dynamics [5].
 %
 \subsection{Artificial Neural Networks}
 %
+Artificial Neural Network is a mathematical model inspired by research into the nature of the human brain. In common ANNs consists of five components: 
+
+1. Network topology which is represented by a directed graph with arcs are referred as links.
+2. A variable which represents the state of each node.
+3. For each link a real value variable represents its weight.
+4. A real value bias which is supplied to each node.
+5. Node transfer function which determines the state of the node. The transfer function consists of an activation function (in most cases sigmoid or hyperbolic tangent). The activation function accepts sum of the inputs multiplied by the weights of the links between the node and the other nodes.
+
+When the network is of a type feed-forward there is no recurrent links (graph without loops). The input nodes in such network does not have input arcs. In order the network to process information the input nodes should be supplied with values. After that the input information can be spread across the network. This action is known as feed-forward pass and it means that the other nodes are changing their state variable according to the propagation rules. The most used ANN topology is multilayer perceptron (MLP). In such network any path from an input node to an output node traverses the same number of arcs. A hidden layer in such ANN is a group of nodes which are not input, output and are on the same number of arcs distance from the input layer and the output layer. The network is fully connected if each node in particular layer is connected to each node in the previous layer. 
+
+MLP has its popularity because of a few reasons. It was found that such networks generalize well in practical problems. When trained on a relatively sparse set of data points, they will often provide the right output for an input not presented in the training set. Secondly, gradient based training algorithms like backpropagation can be successfully applied in order to find a good set of weights in acceptable amount of time. The advantage of the backpropagation is calculation of the gradient of the error according to the weights for a given input by back propagating the error through the network. Of course there are some disadvantages in gradient based training algorithms. Gradient based training works well on simple training problems. When the problem complexity increases (most commonly because of the increased dimensionality and/or greater data complexity) the performance of the gradient based training falls off rapidly. 
+
+The performance slow down seems come from the fact that complex spaces have nearly global optimum around the local optimum. Gradient search techniques tend to get trapped at local optimum. With a high enough gain (or momentum), backpropagation can escape these local optimum. However, it leaves them without knowing whether the next one it finds will be better or worse. When the nearly global optimum are well hidden among the local optimum, backpropagation can end up bouncing between local optimum without much overall improvement, thus making for very slow training. The second drawback of the gradient based training is the requirement the activation function differentiability. Backpropagation can not handle discontinuous  optimallty or discontinuous node activation functions.
 %
 \subsection{Genetic Algorithms}
 %
+Genetic Algorithms are meta heuristic for global optimization inspired from the ideas for the biological evolution. In common they have five components:
+
+1. Approach for encoding the problem in the terms of chromosomes (population individuals).
+2. An evaluation function which is used to determine survival capabilities of each chromosome.
+3. A strategy for initial population initialization.
+4. Set of operator applied over parent chromosomes in order reproduction to appear (in most cases – selection, crossover, mutation and/or domain specific genetic material recombination).
+5. Set of parameters applied over the population and the operators.
+
+According these five common components GA operates in the following steps:
+
+1. Initialization of the population (can be random or according some prior information).
+2. Evaluation of each chromosome in the population. Relative ranking is the important result in this step.
+3. Epochs of recombinations are executed until stopping criteria is met.
+  3.1 Parents selection is generally stochastic but parent with better fitness value are preferred.
+  3.2 Recombination operators are applied over the selected parents in order to produce children.
+  3.3 Evaluation of the children is done in order to keep some of the in the population. In some cases full old population is replaced by the new generation, but in other cases only part of the new generation is kept. The elitism rule is applied when the best found individuals should survive until the end of the evolution.
+
+If appropriate problem encoding and recombination operators are selected the algorithm is capable to produce better and better solutions, converging finally on results close to a global optimum. In more of the real practice problems (as the problem presented in this research) standard operators as crossover and mutation are sufficient. In such case GA can be used as black-box optimizer. It means that no specific knowledge of the problem domain is needed. As it is shown in this research by involving problem specific operators (crossover and mutation), the optimization efficiency can be improved. 
+
+GA does not have a scaling problem as it is the case with ANN. Even more, GAs are very proper for parallel computing and even for distributed computing. It is like this because GA improves the current best candidate monotonically. It is done by keeping the best found candidates as part of the population while searching for better candidates continues. Also GAs are not threatened by trapping in a local optimum. The mutation and crossover operators can step from a valley across a hill to an even lower valley with no more difficulty than descending directly into a valley.
 %
 \section{Mobile Devices Distributed Computing}
 %
