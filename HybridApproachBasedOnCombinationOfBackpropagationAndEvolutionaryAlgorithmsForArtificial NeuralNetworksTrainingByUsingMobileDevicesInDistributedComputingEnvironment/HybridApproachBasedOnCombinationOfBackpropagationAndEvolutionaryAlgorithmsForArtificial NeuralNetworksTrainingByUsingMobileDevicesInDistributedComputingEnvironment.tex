@@ -2,6 +2,7 @@
 \usepackage{graphicx}
 \usepackage{placeins}
 \usepackage{upgreek}
+\usepackage{amsmath}
 %
 \begin{document}
 \pagestyle{headings} 
@@ -33,9 +34,9 @@ When Evolutionary Algorithms (EAs) are used for Artificial Neural Networks (ANNs
 %
 \section{Introduction}
 %
-ANNs are very common in the field of machine learning. In its nature ANN training is an optimization problem. When the searching space is too big EAs for global optimization as Genetic Algorithms (GAs) can be very suitable. In the last two decades there are alot of attempts to combine EAs based optimization with the ANNs training. This combination shows to be much more promising when it is implemented as distributed computing system [1,2,3]. With the rising popularity of the mobile devices a lot of new possibilities for distributed computing can be investigated. Successful desktop distributed computing projects [4,5] can be efficiently implemented on mobile devices. This idea can be applied on EA based ANN training into a mobile distributed computing environment [6]. In this paper genetic algorithm in combination with backpropagation artificial neural network training is described. The training is done on a mobile devices as active Android wallpaper application. In addition, the traditional ANN's sigmoid function is replaced by fading sinusoidal function. The successful application of this hybrid approach is documented by series of experiments.
+ANNs are very common in the field of machine learning. In its nature ANN training is an optimization problem. When the searching space is too big EAs for global optimization as Genetic Algorithms (GAs) can be very suitable. In the last two decades there are alot of attempts to combine EAs based optimization with the ANNs training. This combination shows to be much more promising when it is implemented as distributed computing system [1,2,3]. With the rising popularity of the mobile devices a lot of new possibilities for distributed computing can be investigated. Successful desktop distributed computing projects such as described in [4,5] can be efficiently implemented on mobile devices. This idea can be applied on EA based ANN training into a mobile distributed computing environment [6]. In this paper genetic algorithm in combination with backpropagation artificial neural network training is described. The training is done on a mobile devices as active Android wallpaper application. In addition, the traditional ANN's sigmoid function is replaced by fading sinusoidal function. The successful application of this hybrid approach is documented by series of experiments.
 
-This paper is organized as follows. Section 1 gives an overview of the problem  with a special emphasis on ANNs/GAs and their strengths/weaknesses when applied for the problem's solution. Section 2 introduces a distributed computing environment based on mobile devices. Experiments and results are presented in Section 3. The final Section 4 concludes and some further work suggestions are provided. 
+This paper is organized as follows. Section 1 gives an overview of the problem  with a special emphasis on ANNs/GAs and their strengths/weaknesses when applied for the problem's solution. Section 2 introduces a distributed computing system based on mobile devices. Experiments and results are presented in Section 3. The final Section 4 concludes and some further work suggestions are provided. 
 %
 \subsection{Financial Time Series Forecasting}
 %
@@ -95,18 +96,15 @@ If appropriate problem encoding and recombination operators are selected the alg
 
 GA does not have a scaling problem as it is the case with ANN. Even more, GAs are very proper for parallel computing and even for distributed computing. It is like this because GA improves the current best candidate monotonically. It is done by keeping the best found candidates as part of the population while searching for better candidates continues. Also GAs are not threatened by trapping in a local optimum. The mutation and crossover operators can step from a valley across a hill to an even lower valley with no more difficulty than descending directly into a valley.
 %
-\section{Mobile Devices Distributed Computing}
+\subsection{Neuron Activation Function Proposal}
 %
-%
-\subsection{Neuron Activation Function proposal}
-%
-The most used activation functions in MLPs are the sigmoid function and the hyperbolic tangent function [7]. In this research sin function with exponent fading effect is proposed as neurons activation function (Fig. 1). Because of its fading effect neurons are more active in a specific input range. In the input is high positive or high negative the neuron stops acting as effect of over saturation.
-
-Fading sine function is differentiable which is one of the common requirements in gradient based training of ANNs.
+The most used activation functions in MLPs are the sigmoid function and the hyperbolic tangent function [7]. In this research sin function with exponent fading effect is proposed as neurons activation function (Fig. 1). Because of its fading effect neurons are more active in a specific input range. If the input is highly positive or highly negative the neuron stops acting as effect of over saturation.
 %
 \begin{equation}
 f(x) = \frac {\pi \sin(x)} { e^{ |x| }}
 \end{equation}
+
+The proposed function (Eq. 1) is differentiable (Eq. 2, Eq. 3) which is one of the common requirements in gradient based training of ANNs.
 %
 \begin{figure}
 	\centering
@@ -119,11 +117,18 @@ f(x) = \frac {\pi \sin(x)} { e^{ |x| }}
 \begin{equation}
 \frac{d}{dx}f(x) = \frac {\pi (|x|\cos x - x\sin x)} { |x| e^{ |x| } }
 \end{equation}
+
+Function derivative can be expressed by the function itself as it is shown in Eq. 3.
 %
 \begin{equation}
-\frac{d}{dx}f(x) = f(x + \pi) - f(x)
-\frac{d}{dx}f(x) = f(x + \pi) + f(x)
-\frac{d}{dx}f(x) = +\infty
+\frac{d}{dx}f(x) = 
+\left\{
+	\begin{array}{ll}
+		f(x + \pi) - f(x) & \mbox{, } x > 0 \\
+		f(x + \pi) + f(x) & \mbox{, } x < 0 \\
+		+\infty & \mbox{, } x = 0
+	\end{array}
+\right.
 \end{equation}
 %
 \begin{figure}
@@ -134,12 +139,20 @@ f(x) = \frac {\pi \sin(x)} { e^{ |x| }}
 \end{figure}
 \FloatBarrier
 %
+The advantage of such activation function is that each neuron has loading level which it is capable to handle. 
+%
+\section{Mobile Devices Distributed Computing}
+%
+The latest developments in mobile devices technology have made smartphones as the future computing and service access devices. Users expect to run computational intensive applications on Smart Mobile Devices (SMDs) in the same way as powerful stationary computers [8]. Mobile Cloud Computing (MCC) is the latest practical solution for alleviating this incapacitation by extending the services and resources of computational clouds to SMDs on demand basis. In MCC, application offloading is ascertained as a software level solution for augmenting application processing capabilities of SMDs [8]. 
+
+The proposed mobile client application is based on the capabilities of the Android Live Wallpaper [6]. On a regular basis wallpaper service wake ups. At each wake up single forecast is done. This forecast is then visualized as part of wallpaper image. The wake up finishes with a single ANN training epoche. Forecasting model is organized as three-layers MLP instantiated as Encog framework Java object. Local ANN gradient based training is organized as resilient backpropagation which is provided by Encog framework. Training examples are generated from time series by dividing the values in a lag frame (values in the past) and lead frame (values in the future). By this way ANN tries to learn lag and lead patterns. All input data are normalized in the range of the used activation function (in this case -1 and +1, as shown in Fig. 1). Different instances of the ANN weights are presented as GA chromosomes. The error of ANN forecasts is used as fitness function in the local GA. On the side of the mobile client GA is represented as Java objects provided by Apache Commons Math Genetic Algorithms framework. In order ANN training to be continuous and to be independent from Internet network connection, all ANN training examples are stored in a local SQLite database. The communication with the remote server is done only when there is better local solution. The information exchange between the client and the server is organized za HTTP sessions. All data exchanges are packaged as JSON messages. On the server side there is a PHP/MySQL based solution which is described in [2]. 
+%
 \section{Experiments and Results}
 %
 %
 \section{Conclusions}
 %
-Even that GA based ANN training is slower than back propagation when it is implemented as simultaneous computations in a distributed environment it can be efficient enough for practical use. Because modern mobile devices are used in 24/7 basis to use them as distributed computing network is very cost effective if the approach is based on donated computational power. As further development it will be interesting mobile devices distributed computing to be combined with supercomputers. The the central node it is possible to provide access of a super computer. Such hybrid infrastructure can provide interesting research and industrial challenges.
+Even that GA based ANN training is slower than back propagation when it is implemented as simultaneous computations in a distributed environment it can be efficient enough for practical use. Because modern mobile devices are used in 24/7 basis to use them as distributed computing network is very cost effective if the approach is based on donated computational power. As further development it will be interesting mobile devices distributed computing to be combined with supercomputers. The the central node it is possible to provide access of a super computer. Such hybrid infrastructure can provide interesting research and industrial challenges. Another very interesting direction of further development is the capabilities of Android widgets. The client side calculations are possible to be done in a widget instead in a wallpaper. Android widgets are interactive components in the graphical user interface. Such computational widget can be used for user voting or even user's guess for the future forecast. The collection of human opinion will transfer this software solution in to human-computer based distributed computing. 
 %
 \section*{Acknowledgements}
 %
@@ -182,7 +195,12 @@ https://github.com/TodorBalabanov/VitDisComp Sofia, Bulgaria  (2017)
 \bibitem[7] {kar:veh:1}
 Karlik, B, Vehbi, A.:
 Performance Analysis of Various Activation Functions in Generalized MLP Architectures of Neural Networks.
-International Journal of Artificial Intelligence And Expert Systems (IJAE), vol. 1, no 4, 111--122 (2011) 
+International Journal of Artificial Intelligence And Expert Systems (IJAE), vol. 1, no. 4, 111--122 (2011) 
+%
+\bibitem[8] {shi:gan:1}
+Shiraz, M., Gani, A., Khokhar, R., Buyya, R.:
+A Review on Distributed Application Processing Frameworks in Smart Mobile Devices for Mobile Cloud Computing.
+IEEE Communications Surveys \& Tutorials, vol. 15, no. 3, 1294--1313 (2013) 
 %
 \end{thebibliography}
 \end{document}
