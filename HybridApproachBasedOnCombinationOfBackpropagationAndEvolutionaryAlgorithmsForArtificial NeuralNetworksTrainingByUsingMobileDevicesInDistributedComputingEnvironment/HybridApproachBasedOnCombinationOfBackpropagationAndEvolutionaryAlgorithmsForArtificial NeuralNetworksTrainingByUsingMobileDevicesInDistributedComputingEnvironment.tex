@@ -100,9 +100,13 @@ GA does not have a scaling problem as it is the case with ANN. Even more, GAs ar
 %
 \subsection{Neuron Activation Function proposal}
 %
-The most used activation functions in MLPs are the sigmoid function and the hyperbolic tangent function [xxx]. In this research sin function with exponent fading effect is proposed as neurons activation function (Fig. 1). Because of its fading effect neurons are more active in a specific input range. In the input is high positive or high negative the neuron stops acting as effect of over saturation.
+The most used activation functions in MLPs are the sigmoid function and the hyperbolic tangent function [7]. In this research sin function with exponent fading effect is proposed as neurons activation function (Fig. 1). Because of its fading effect neurons are more active in a specific input range. In the input is high positive or high negative the neuron stops acting as effect of over saturation.
 
 Fading sine function is differentiable which is one of the common requirements in gradient based training of ANNs.
+%
+\begin{equation}
+f(x) = \frac {\pi \sin(x)} { e^{ |x| }}
+\end{equation}
 %
 \begin{figure}
 	\centering
@@ -110,6 +114,17 @@ Fading sine function is differentiable which is one of the common requirements i
 	\caption{Proposed acrivation function.}
 	\label{fig:Graph}
 \end{figure}
+\FloatBarrier
+%
+\begin{equation}
+\frac{d}{dx}f(x) = \frac {\pi (|x|\cos x - x\sin x)} { |x| e^{ |x| } }
+\end{equation}
+%
+\begin{equation}
+\frac{d}{dx}f(x) = f(x + \pi) - f(x)
+\frac{d}{dx}f(x) = f(x + \pi) + f(x)
+\frac{d}{dx}f(x) = +\infty
+\end{equation}
 %
 \begin{figure}
 	\centering
@@ -139,22 +154,22 @@ Balabanov, T., Zankinski, I., Barova, M.:
 Strategy for Individuals Distribution by Incident Nodes Participation in Star Topology of Distributed Evolutionary Algorithms.
 Cybernetics and Information Technologies, Sofia, Bulgaria, vol. 16, no. 1, 80--88  (2016)
 %
-\bibitem[2] {bal:dob}
+\bibitem[2] {bal:dob:1}
 Balabanov, T., Zankinski, I., Dobrinkova, D.:
 Time Series Prediction by Artificial Neural Networks and Differential Evolution in Distributed Environment.
 International Conference on Large-Scale Scientific Computing, Sozopol, Bulgaria, Lecture Notes in Computer Science, vol. 7116, no. 1, 198--205  (2011)
 %
-\bibitem[3] {bal:3}
+\bibitem[3] {bal:1}
 Balabanov, T.:
 Heuristic Forecasting Approaches in Distributed Environment (in Bulgarian).
 Proceedings of Anniversary Scientific Conference 40 Years Department of Industrial Automation, UCTM, Sofia, Bulgaria, 163--166 (2011)
 %
-\bibitem[4] {bal:1}
+\bibitem[4] {bal:2}
 Balabanov, T.:
 Distributed evolutional model for music composition by human-computer interaction.
 Proceedings of International Scientific Conference UniTech15, University publishing house V. Aprilov, Gabrovo, Bulgaria, vol. 2, 389--392 (2015)
 %
-\bibitem[5] {bal:2}
+\bibitem[5] {bal:3}
 Balabanov, T.:
 Avoiding Local Optimums in Distributed Population based Heuristic Algorithms (in Bulgarian).
 Proceedings of XXIII International Symposium Management of energy, industrial and environmental systems, John Atanasoff Union of Automation and Informatics, Sofia, Bulgaria, 83--86 (2015)
@@ -163,6 +178,11 @@ Proceedings of XXIII International Symposium Management of energy, industrial an
 Balabanov, T., Zankinski, I., Barova, M.:
 VitoshaTrade Distributed Computing Android Wallpaper.
 https://github.com/TodorBalabanov/VitDisComp Sofia, Bulgaria  (2017)
+%
+\bibitem[7] {kar:veh:1}
+Karlik, B, Vehbi, A.:
+Performance Analysis of Various Activation Functions in Generalized MLP Architectures of Neural Networks.
+International Journal of Artificial Intelligence And Expert Systems (IJAE), vol. 1, no 4, 111--122 (2011) 
 %
 \end{thebibliography}
 \end{document}
