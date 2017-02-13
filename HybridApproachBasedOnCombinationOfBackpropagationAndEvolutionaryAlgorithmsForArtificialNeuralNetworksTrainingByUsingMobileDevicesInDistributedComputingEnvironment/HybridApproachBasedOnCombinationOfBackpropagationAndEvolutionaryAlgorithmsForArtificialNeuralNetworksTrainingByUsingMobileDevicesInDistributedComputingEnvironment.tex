@@ -3,6 +3,7 @@
 \usepackage{placeins}
 \usepackage{upgreek}
 \usepackage{amsmath}
+\usepackage{subfig}
 %
 \begin{document}
 \pagestyle{headings} 
@@ -107,17 +108,18 @@ f(x) = \frac {\pi \sin(x)} { e^{ |x| }}
 The proposed function (Eq. 1) is differentiable (Eq. 2, Eq. 3) which is one of the common requirements in gradient based training of ANNs.
 %
 \begin{figure}
-	\centering
-	\includegraphics[width=7.88cm,height=7.88cm]{fig03.png}
-	\caption{Proposed acrivation function.}
-	\label{fig:Graph}
+    \centering
+    \subfloat[Function]{{\includegraphics[width=6cm,height=6cm]{fig03.png} }}
+    \subfloat[Derivative]{{\includegraphics[width=6cm,height=6cm]{fig04.png} }}
+    \caption{Exponent regulated sin activation function and its derivative.}
+    \label{fig:fig01}
 \end{figure}
 \FloatBarrier
 %
 \begin{equation}
 \frac{d}{dx}f(x) = \frac {\pi (|x|\cos x - x\sin x)} { |x| e^{ |x| } }
 \end{equation}
-
+%
 Function derivative can be expressed by the function itself as it is shown in Eq. 3.
 %
 \begin{equation}
@@ -131,15 +133,16 @@ Function derivative can be expressed by the function itself as it is shown in Eq
 \right.
 \end{equation}
 %
+The advantage of such activation function is that each neuron has loading level which it is capable to handle. 
+%
 \begin{figure}
-	\centering
-	\includegraphics[width=7.88cm,height=7.88cm]{fig04.png}
-	\caption{Proposed function derivative.}
-	\label{fig:Graph}
+    \centering
+    \subfloat[Function]{{\includegraphics[width=6cm,height=6cm]{fig01.png} }}
+    \subfloat[Derivative]{{\includegraphics[width=6cm,height=6cm]{fig02.png} }}
+    \caption{Fading sin activation function and its derivative.}
+    \label{fig:fig02}
 \end{figure}
 \FloatBarrier
-%
-The advantage of such activation function is that each neuron has loading level which it is capable to handle. 
 %
 \section{Mobile Devices Distributed Computing}
 %
