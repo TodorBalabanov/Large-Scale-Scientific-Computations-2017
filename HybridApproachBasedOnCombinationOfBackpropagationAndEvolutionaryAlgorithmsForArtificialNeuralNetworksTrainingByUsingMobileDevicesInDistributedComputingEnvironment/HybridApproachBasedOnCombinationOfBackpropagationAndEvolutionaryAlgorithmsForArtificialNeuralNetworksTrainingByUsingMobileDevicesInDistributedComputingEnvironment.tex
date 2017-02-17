@@ -104,7 +104,7 @@ The most often used activation functions in MLPs are the sigmoid function and th
 \begin{equation}
 f(x) = \frac {\pi \sin(x)} { e^{ |x| }}
 \end{equation}
-
+%
 The proposed function (Eq. 1) is differentiable (Eq. 2, Eq. 3) which is one of the common requirements in gradient based training of ANNs.
 %
 \begin{figure}
@@ -134,6 +134,18 @@ Function derivative can be expressed by the function itself as it is shown in Eq
 \end{equation}
 %
 The advantage of such activation function is that each neuron has loading level which it is capable to handle. 
+
+If periodic processes should be modeled with ANN it is possible to apply sin fading function (Fig. 2).
+%
+\begin{equation}
+f(x) = 
+\left\{
+	\begin{array}{ll}
+		\sin(x) & \mbox{, } -\pi <= x <= +\pi \\
+		\frac {\sin(x)} { |x| } & \mbox{, } +\pi < x < -\pi
+	\end{array}
+\right.
+\end{equation}
 %
 \begin{figure}
     \centering
@@ -143,6 +155,20 @@ The advantage of such activation function is that each neuron has loading level 
     \label{fig:fig02}
 \end{figure}
 \FloatBarrier
+%
+The problem with the sin fading function is that it has break points at -$\pi$ and +$\pi$.
+%
+\begin{equation}
+\frac{d}{dx}f(x) = 
+\left\{
+	\begin{array}{ll}
+		\cos(x) & \mbox{, } -\pi <= x <= +\pi \\
+		\frac {\cos(x)} { |x| } - \frac{ \sin(x) }{ x |x| } & \mbox{, } +\pi < x < -\pi
+	\end{array}
+\right.
+\end{equation}
+%
+The components of the function (Eq. 4) are differentiable functions (Eq. 5). This small inconvenience is not a problem when calculations are done with discrete number calculating computers. Representing real numbers in the computer memory is less accurate than the problems of analytic differentiability of the sin fading function. 
 %
 \section{Mobile Devices Distributed Computing}
 %
