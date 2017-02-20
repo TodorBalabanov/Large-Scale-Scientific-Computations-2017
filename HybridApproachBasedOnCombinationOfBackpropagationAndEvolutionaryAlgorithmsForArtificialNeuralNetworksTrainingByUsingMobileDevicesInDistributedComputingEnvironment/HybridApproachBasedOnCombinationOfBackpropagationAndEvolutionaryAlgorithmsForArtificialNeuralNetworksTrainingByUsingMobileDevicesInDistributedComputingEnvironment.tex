@@ -178,6 +178,18 @@ The proposed mobile client application is based on the capabilities of the Andro
 %
 \section{Experiments and Results}
 %
+All experiments are done with Encog framework by using Java programming language [9]. MLP neural network  (256-64-10 topology) is trained with examples of handwritten digits. Data set consists of 1593 handwritten digits from around 80 persons were scanned, stretched in a rectangular box 16x16 in a gray scale of 256 values [10]. Experiments are done on a single CPU core with the following parameters of the machine: Intel Core i7-4790 - 3.6GHz - 4 cores - 8 threads, 8GB RAM, Microsoft Windows 10, Encog Core v3.4 - Java Version, Java 8 Update 112 (64bit). 
+%
+\begin{figure}
+    \centering
+    \subfloat[MLP Error]{{\includegraphics[width=6cm,height=6cm]{fig05.png} }}
+    \subfloat[Training Epochs]{{\includegraphics[width=6cm,height=6cm]{fig06.png} }}
+    \caption{Activation functions efficiency.}
+    \label{fig:fig02}
+\end{figure}
+\FloatBarrier
+%
+Comparison is done between seven activation functions - Fading Sin, Exponent Regulated Sin, Sigmoid, Bipolar Sigmoid, Logarithm, Hyperbolic Tangent, Elliott Symmetric. As it is shown in Fig. 3, between 70 and 110 training epoche are done for 10 seconds of training. The performance of exponent regulated sine is slower than the performance of fading sine. The network error for both functions decreases slower than the others, which is very logical because each neuron is limited in the activation signal which can be handled. This limitation gives better responsibilities separation between the neurons in each layer. 
 %
 \section{Conclusions}
 %
@@ -230,6 +242,16 @@ International Journal of Artificial Intelligence And Expert Systems (IJAE), vol.
 Shiraz, M., Gani, A., Khokhar, R., Buyya, R.:
 A Review on Distributed Application Processing Frameworks in Smart Mobile Devices for Mobile Cloud Computing.
 IEEE Communications Surveys \& Tutorials, vol. 15, no. 3, 1294--1313 (2013) 
+%
+\bibitem[9] {zan:1}
+Zankinski, I.:
+Encog digits classification resilient training example with sin activation functions.
+https://github.com/iliyanzan/DigitsResilient Sofia, Bulgaria  (2017)
+%
+\bibitem[10] {bus:tez:1}
+Buscema, M., Terzi, S.:
+Semeion Handwritten Digit Data Set.
+Center for Machine Learning and Intelligent Systems, http://archive.ics.uci.edu/ml/datasets/Semeion+Handwritten+Digit California, USA  (2009)
 %
 \end{thebibliography}
 \end{document}
