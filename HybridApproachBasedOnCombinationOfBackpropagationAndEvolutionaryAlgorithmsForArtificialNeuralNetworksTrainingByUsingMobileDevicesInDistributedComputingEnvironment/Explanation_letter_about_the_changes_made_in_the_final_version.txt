@@ -1,0 +1,3 @@
+﻿1. References to ANN training was added in subsection 1.2.
+2. References to GA optimization was added in subsection 1.3.
+3. Additional explanation how GA, ANN and mobile devices are combined was added in section 2.

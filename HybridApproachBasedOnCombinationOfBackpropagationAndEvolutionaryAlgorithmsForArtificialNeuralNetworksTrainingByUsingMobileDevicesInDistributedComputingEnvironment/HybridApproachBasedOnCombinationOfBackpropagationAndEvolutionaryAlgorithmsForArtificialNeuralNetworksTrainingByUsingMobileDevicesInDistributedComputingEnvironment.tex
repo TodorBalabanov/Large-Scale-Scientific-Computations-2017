@@ -45,61 +45,41 @@ A time series is a collection of measurements made in a sequence through time. T
 %
 \subsection{Artificial Neural Networks}
 %
-Artificial Neural Network is a mathematical model inspired by research into the nature of the human brain. ANNs consists of five components: 
+Artificial Neural Network is a mathematical model inspired by research into the nature of the human brain. ANNs consists of five components: 1. Network topology which is represented by a directed graph where arcs are referred as links; 2. A variable which represents the state of each node; 3. For each link a real value variable represents its weight; 4. A real value bias which is supplied to each node; 5. Node transfer function which determines the state of the node. The transfer function consists of an activation function (in most cases sigmoid or hyperbolic tangent). The activation function accepts the sum of the inputs multiplied by the weights of the links between the node and the input nodes.
 
-1. Network topology which is represented by a directed graph where arcs are referred as links.
+The input nodes in feed-forward network do not have input arcs. The input nodes should be supplied with values. After that the input information can be spread across the network. The other nodes are changing their state variable according to the propagation rules. In multilayer perceptron (MLP) any path from an input node to an output node traverses the same number of arcs. A hidden layer is a group of nodes which are neither input nor output and are on the same number of arcs distance from the input layer and the output layer. MLP is fully connected if each node in a particular layer is connected to each node in the previous layer. 
 
-2. A variable which represents the state of each node.
+Research shows that such MLP generalize well in practical problems. When trained on a relatively sparse set of data points, they often provide the right output for an input not presented in the training set. Secondly, gradient based training algorithms can be successfully applied in order to find a good set of weights in acceptable amount of time. The advantage is in calculating the gradient of the error according to the weights for a given input by back propagating the error through the network. Gradient based training works well on simple training problems, but when the problem complexity increases (most commonly because of the increased dimensionality and/or greater data complexity) the performance of the gradient based training falls off rapidly [7]. 
 
-3. For each link a real value variable represents its weight.
-
-4. A real value bias which is supplied to each node.
-
-5. Node transfer function which determines the state of the node. The transfer function consists of an activation function (in most cases sigmoid or hyperbolic tangent). The activation function accepts the sum of the inputs multiplied by the weights of the links between the node and the input nodes.
-
-When the network type is feed-forward there is no recurrent links (graph without loops). The input nodes in such network do not have input arcs. In order for the network to process information the input nodes should be supplied with values. After that the input information can be spread across the network. This action is known as feed-forward pass and it means that the other nodes are changing their state variable according to the propagation rules. The most used ANN topology is multilayer perceptron (MLP). In such network any path from an input node to an output node traverses the same number of arcs. A hidden layer in such ANN is a group of nodes which are neither input nor output and are on the same number of arcs distance from the input layer and the output layer. The network is fully connected if each node in a particular layer is connected to each node in the previous layer. 
-
-MLP is so popular because of several reasons. Research shows that such networks generalize well in practical problems. When trained on a relatively sparse set of data points, they often provide the right output for an input not presented in the training set. Secondly, gradient based training algorithms like backpropagation of errors can be successfully applied in order to find a good set of weights in acceptable amount of time. The advantage of backpropagation is in calculating the gradient of the error according to the weights for a given input by back propagating the error through the network. Of course there are some disadvantages in gradient based training algorithms. Gradient based training works well on simple training problems. When the problem complexity increases (most commonly because of the increased dimensionality and/or greater data complexity) the performance of the gradient based training falls off rapidly. 
-
-The performance slow down seems to come from the fact that complex spaces have nearly global optimum around the local optimum. Gradient search techniques tend to get trapped at the local optimum. With a high enough gain (or momentum), backpropagation can escape these local optima. However, it leaves them without knowing whether the next one it finds will be better or worse. When the nearly global optima are well hidden among the local optimum, backpropagation can end up bouncing between local optima without much overall improvement, thus making for very slow training. The second drawback of the gradient based training is the requirement for the activation function differentiability. Backpropagation can not handle discontinuous functions or discontinuous node activation functions.
+The performance slow down seems to come from the fact that complex spaces have nearly global optimum around the local optimum. Gradient search techniques tend to get trapped at the local optimum. With a high enough gain (or momentum), backpropagation can escape these local optima. However, it leaves them without knowing whether the next one it finds will be better or worse. When the nearly global optima are well hidden among the local optimum, backpropagation can end up bouncing between local optima without much overall improvement, thus making for very slow training. Another drawback of the gradient based training is the requirement for the activation function differentiability. Backpropagation can not handle discontinuous functions or discontinuous node activation functions.
 %
 \subsection{Genetic Algorithms}
 %
-Genetic Algorithms are meta heuristics for global optimization inspired from the ideas of biological evolution. They have five components:
+Genetic Algorithms are meta heuristics for global optimization inspired from the ideas of biological evolution. They have five components: 1. Approach for encoding the problem in terms of chromosomes (population of individuals); 2. An evaluation function which is used to determine survival capabilities of each chromosome; 3. A strategy for initial population initialization; 4. Set of operator applied over parent chromosomes in order reproduction to appear (in most cases – selection, crossover, mutation and/or domain specific genetic material recombination); 5. Set of parameters applied over the population and the operators.
 
-1. Approach for encoding the problem in terms of chromosomes (population of individuals).
-
-2. An evaluation function which is used to determine survival capabilities of each chromosome.
-
-3. A strategy for initial population initialization.
-
-4. Set of operator applied over parent chromosomes in order reproduction to appear (in most cases – selection, crossover, mutation and/or domain specific genetic material recombination).
-
-5. Set of parameters applied over the population and the operators.
-
-\vspace{4 mm}
+\vspace{1 mm}
 
 GA applies these components and operates in the following steps:
 
-1. Initialization of the population (can be random or according some prior information).
+1. Initialization of the population (random or some prior information).
 
-2. Evaluation of each chromosome in the population. Relative ranking is the important result in this step.
+2. Chromosomes evaluation (relative ranking as result in this step).
 
 3. Epochs of recombinations are executed until stopping criteria is met.
 
-  \hspace{4 mm}3.1 Parents selection is generally stochastic but parents with better fitness value are preferred.
+  \hspace{4 mm}3.1 Stochastic parents selection (parents with better fitness are preferred).
   
-  \hspace{4 mm}3.2 Recombination operators are applied over the selected parents in order to produce children.
+  \hspace{4 mm}3.2 Children are produced by recombination operators over the parents.
   
-  \hspace{4 mm}3.3 Evaluation of the children is done in order to keep some of them in the population. In some cases the whole old population is replaced by the new generation, but in other cases only part of the new generation is kept. The elitism rule is applied by keeping the best found individuals to survive until the end of the evolution.
+  \hspace{4 mm}3.3 Evaluation of the children is done to keep some of them in the population. Some thimes the elitism rule is applied by keeping the best found individuals to survive until the end of the evolution.
 
 If appropriate problem encoding and recombination operators are selected the algorithm is capable of producing better and better solutions, converging finally on results close to a global optimum. In most of the real life problems (as the problem presented in this research) standard operators as crossover and mutation are sufficient. In this case GA can be used as black-box optimizer. It means that no specific knowledge of the problem domain is needed. As it is shown in this research by involving problem specific operators (crossover and mutation), the optimization efficiency can be improved. 
 
-GA does not have a scaling problem as it is the case with ANN. Even more, GAs are very suitable for parallel computing and even for distributed computing. This is the case because GA improves the current best candidate monotonically. It is done by keeping the best found candidates as part of the population while searching for better candidates continues. GAs are not threatened by getting stuck in a local optimum. The mutation and crossover operators can step from a valley across a hill to an even lower valley with no more difficulty than descending directly into a valley.
+GA does not have a scaling problem as it is the case with ANN [8]. Even more, GAs are very suitable for parallel computing and even for distributed computing, because GA improves the current best candidate monotonically. It is done by keeping the best found candidates as part of the population while searching for better candidates continues. GAs are not threatened by getting stuck in a local optimum. The mutation and crossover operators can step from a valley across a hill to an even lower valley with no more difficulty than descending directly into a valley.
 %
 \subsection{Neuron Activation Function Proposal}
 %
-The most often used activation functions in MLPs are the sigmoid function and the hyperbolic tangent function [7]. In this research sin function with exponent fading effect is proposed as neurons activation function (Fig. 1). Because of its fading effect neurons are more active in a specific input range. If the input is highly positive or highly negative the neuron stops acting as effect of over saturation.
+The most often used activation functions in MLPs are the sigmoid function and the hyperbolic tangent function [9]. In this research sin function with exponent fading effect is proposed as neurons activation function (Fig. 1). Because of its fading effect neurons are more active in a specific input range. If the input is highly positive or highly negative the neuron stops acting as effect of over saturation.
 %
 \begin{equation}
 f(x) = \frac {\pi \sin(x)} { e^{ |x| }}
@@ -170,13 +150,15 @@ The components of the function (Eq. 4) are differentiable functions (Eq. 5). Thi
 %
 \section{Mobile Devices Distributed Computing}
 %
-The latest developments in mobile devices technology have made smartphones as the future computing and service access devices. Users expect to run computationally intensive applications on Smart Mobile Devices (SMDs) in the same way as powerful stationary computers [8]. Mobile Cloud Computing (MCC) is the latest practical solution for alleviating this incapability by extending the services and resources of computational clouds to SMDs on demand basis. In MCC, application offloading is ascertained as a software level solution for augmenting application processing capabilities of SMDs [8]. 
+The latest developments in mobile devices technology have made smartphones as the future computing and service access devices. Users expect to run computationally intensive applications on Smart Mobile Devices (SMDs) in the same way as powerful stationary computers [10]. Mobile Cloud Computing (MCC) is the latest practical solution for alleviating this incapability by extending the services and resources of computational clouds to SMDs on demand basis. In MCC, application offloading is ascertained as a software level solution for augmenting application processing capabilities of SMDs [10]. 
 
-The proposed mobile client application is based on the capabilities of the Android Live Wallpaper [6]. On a regular basis a wallpaper service wakes up. At each wake up a single forecast is done. This forecast is then visualized as part of a wallpaper image. The wake up finishes a single ANN training epoche. The forecasting model is organized as a three-layers MLP instantiated as Encog framework Java object. Local ANN gradient based training is organized as resilient backpropagation which is provided by Encog framework. Training examples are generated from time series by dividing the values in a lag frame (values in the past) and lead frame (values in the future). In this way ANN tries to learn lag and lead patterns. All input data are normalized in the range of the used activation function (in this case -1 and +1, as shown in Fig. 1). Different instances of the ANN weights are presented as GA chromosomes. The error of ANN forecasts is used as fitness function in the local GA. On the side of the mobile client GA is represented as Java objects provided by Apache Commons Math Genetic Algorithms framework. In order for ANN training to be continuous and to be independent from Internet network connection, all ANN training examples are stored in a local SQLite database. The communication with the remote server is done only when there is better local solution. The information exchange between the client and the server is organized as HTTP sessions. All data exchanges are packaged as JSON messages. On the server side there is a PHP/MySQL based application which is described in [2]. 
+The proposed mobile client application is based on the capabilities of the Android Live Wallpaper [6]. On a regular basis a wallpaper service wakes up. At each wake up a single forecast is done. This forecast is then visualized as part of a wallpaper image. The wake up finishes a single ANN training epoche. The forecasting model is organized as a three-layers MLP instantiated as Encog framework Java object. Local ANN gradient based training is organized as resilient backpropagation which is provided by Encog framework. Training examples are generated from time series by dividing the values in a lag frame (values in the past) and lead frame (values in the future). In this way ANN tries to learn lag and lead patterns [11]. All input data are normalized in the range of the used activation function (in this case -1 and +1, as shown in Fig. 1). Different instances of the ANN weights are presented as GA chromosomes. The error of ANN forecasts is used as fitness function in the local GA. On the side of the mobile client GA is represented as Java objects provided by Apache Commons Math Genetic Algorithms framework. In order for ANN training to be continuous and to be independent from Internet network connection, all ANN training examples are stored in a local SQLite database. The communication with the remote server is done only when there is better local solution. The information exchange between the client and the server is organized as HTTP sessions. All data exchanges are packaged as JSON messages. On the server side there is a PHP/MySQL based application which is described in [2]. 
+
+As summary the weights of an ANN (as Encog Java objects) are optimized with a GA (as Apache Framework Java objects) and this optimization is done on the Android mobile device. Optimization results are cllected on the remote PHP/MySQL server.
 %
 \section{Experiments and Results}
 %
-All experiments are done with Encog framework by using Java programming language [9]. MLP neural network  (256-64-10 topology) is trained with examples of handwritten digits. Data set consists of 1593 handwritten digits from around 80 persons were scanned, stretched in a rectangular box 16x16 in a gray scale of 256 values [10]. Experiments are done on a single CPU core with the following parameters of the machine: Intel Core i7-4790 - 3.6GHz - 4 cores - 8 threads, 8GB RAM, Microsoft Windows 10, Encog Core v3.3.0 - Java Version, Java 8 Update 112 (64bit). 
+All experiments are done with Encog framework by using Java programming language [12]. MLP neural network  (256-64-10 topology) is trained with examples of handwritten digits. Data set consists of 1593 handwritten digits from around 80 persons were scanned, stretched in a rectangular box 16x16 in a gray scale of 256 values [13]. Experiments are done on a single CPU core with the following parameters of the machine: Intel Core i7-4790 - 3.6GHz - 4 cores - 8 threads, 8GB RAM, Microsoft Windows 10, Encog Core v3.3.0 - Java Version, Java 8 Update 112 (64bit). 
 %
 \begin{figure}
     \centering
@@ -231,22 +213,37 @@ Balabanov, T., Zankinski, I., Barova, M.:
 VitoshaTrade Distributed Computing Android Wallpaper.
 https://github.com/TodorBalabanov/VitDisComp Sofia, Bulgaria  (2017)
 %
-\bibitem[7] {kar:veh:1}
-Karlik, B, Vehbi, A.:
+\bibitem[7] {bas:1}
+Bas, E.:
+The Training Of Multiplicative Neuron Model Based Artificial Neural Networks With Differential Evolution Algorithm For Forecasting.
+Journal of Artificial Intelligence and Soft Computing Research, vol. 6, no. 1, 5--11 (2016)
+%
+\bibitem[8] {mag:ols:1}
+Magnusson, K., Olsson, T.:
+Training Artificial Neural Networks with Genetic Algorithms for Stock Forecasting.
+A comparative study between genetic algorithms and the backpropagation of errors algorithms for predicting stock prices. Dissertation. Available at: http://urn.kb.se/resolve?urn=urn:nbn:se:kth:diva-186447 (2016)
+%
+\bibitem[9] {kar:veh:1}
+Karlik, B., Vehbi, A.:
 Performance Analysis of Various Activation Functions in Generalized MLP Architectures of Neural Networks.
 International Journal of Artificial Intelligence And Expert Systems (IJAE), vol. 1, no. 4, 111--122 (2011) 
 %
-\bibitem[8] {shi:gan:1}
+\bibitem[10] {shi:gan:1}
 Shiraz, M., Gani, A., Khokhar, R., Buyya, R.:
 A Review on Distributed Application Processing Frameworks in Smart Mobile Devices for Mobile Cloud Computing.
 IEEE Communications Surveys \& Tutorials, vol. 15, no. 3, 1294--1313 (2013) 
 %
-\bibitem[9] {zan:1}
+\bibitem[11] {qiu:son:1}
+Qiu, M., Song, Y.:
+Predicting the Direction of Stock Market Index Movement Using an Optimized Artificial Neural Network Model.
+PLoS ONE 11(5): e0155133. https://doi.org/10.1371/journal.pone.0155133 (2016)
+%
+\bibitem[12] {zan:1}
 Zankinski, I.:
 Encog digits classification resilient training example with sin activation functions.
 https://github.com/iliyanzan/DigitsResilient Sofia, Bulgaria  (2017)
 %
-\bibitem[10] {bus:tez:1}
+\bibitem[13] {bus:tez:1}
 Buscema, M., Terzi, S.:
 Semeion Handwritten Digit Data Set.
 Center for Machine Learning and Intelligent Systems, http://archive.ics.uci.edu/ml/datasets/Semeion+Handwritten+Digit California, USA  (2009)
