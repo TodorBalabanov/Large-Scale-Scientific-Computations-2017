@@ -1,0 +1,9 @@
+﻿1. Citation of [10] was corrected on page 3, section 2.
+2. Length and the width of the best achieved solution was added in section 4.
+3. The useful area used in the steel sheet was also reported in section 4.
+4. Problem is well defined in the original ESGI proposals. The papers are publicly available.
+5. Genetic algorithms are not very efficient according time consummationon that is why the study is limited to few experiments. The source code of the experiments is publicly available. Each reader can repeat the experiments as much times as he/she wants. 
+6. Other exact numbers solutions were not provided in ESGI113 and ESGI120 that is why the results were not compared with other solutions.
+7. Maximum execution time was reported in section 4.
+
+
